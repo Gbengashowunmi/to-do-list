@@ -18,8 +18,8 @@ function alerts(){
 }
 
 //button event handler
-submitBtn.addEventListener('click', ()=>{
-    // e.preventDefault();
+submitBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
     console.log('clicked');
     if (input.value !=='') {
        //create article
@@ -46,7 +46,6 @@ submitBtn.addEventListener('click', ()=>{
 
         //create DelBtn
         const createDelBtn = document.createElement('button');
-
         createDelBtn.classList.add('delete');
 
        
@@ -62,16 +61,28 @@ submitBtn.addEventListener('click', ()=>{
 
         alert.innerHTML = 'Task added succesfully';
         alert.style.background = 'green';
+        alert.style.color = 'white';
         alerts();
 
         //empty input field after submitting task
         input.value ='';
         clearAll.classList.add('clear-items-show');
-        
+        //delete function
 
+        createDelBtn.addEventListener('click', ()=>{
+            console.log('delete');
+            createArticle.innerHTML = '';
+            createArticle.classList.remove('div');
+            alert.innerHTML = 'Task deleted succesfully';
+            alert.style.background = 'grey';
+            alert.style.color = 'white'
+            alerts();
+            if (section.innerHTML == '') {
+                clearAll.innerHTML ='';
+            }
+        })
     }
     else{
-        
         alert.innerHTML = 'Enter a task, lazy youth!';
         alert.style.background = 'tomato';
         alert.style.color = 'white'
@@ -90,20 +101,6 @@ clearAll.addEventListener('click', ()=>{
             alert.style.color = 'white'
             alerts();
             clearAll.classList.remove('clear-items-show');
-   
-
 })
- 
-delBtn.addEventListener('click', ()=>{
-    console.log('delete');
-    // section.innerHTML = '';
 
-    // alert.innerHTML = 'All task(s) cleared succesfully';
-    //     alert.style.background = 'tomato';
-    //     alert.style.color = 'white'
-    //     alerts();
-    //     clearAll.classList.remove('clear-items-show');
-
-
-})
 
